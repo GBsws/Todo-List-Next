@@ -1,19 +1,16 @@
 import ToDoForm from "../TodoForm/ToDoForm";
+import { type TaskStructure } from '@/app/page'
 type ToDoListProps = {
-  tasks:{
-    text:string;
-    description:string;
-    comment:string;
-    id:number;
-  }[]
+  tasks:TaskStructure[]
+  onFinishedTask: (id:number)=>void;
 }
 
-export const ToDoList = ({tasks}:ToDoListProps) => {
+export const ToDoList = ({tasks, onFinishedTask }:ToDoListProps) => {
   return (
   <ul>
   {tasks.map((task)=>(
   <li key={task.id}>
-    <ToDoForm text={task.text} description={task.description} comment={task.comment} />
+    <ToDoForm id={task.id} text={task.text} description={task.description} comment={task.comment} onFinished={onFinishedTask} />
   </li>
   ))}
   </ul>

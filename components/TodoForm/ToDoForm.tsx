@@ -1,11 +1,13 @@
 
 export type ToDoFormProps = {
+  id:number;
   text:string; 
   description:string;
   comment:string;
+  onFinished: (id:number)=>void;
 }
 
-export default function ToDoForm({text, description,comment}:ToDoFormProps){
+export default function ToDoForm({text, description, id, comment,onFinished}:ToDoFormProps){
   return(
       <>
        <form>
@@ -20,7 +22,7 @@ export default function ToDoForm({text, description,comment}:ToDoFormProps){
         <textarea rows={4} cols={35} id="task_comment" name="task_comment"
          placeholder="comment the task" value={comment}/>
          </form>
-         <button>Done</button>
+         <button onClick={() => onFinished(id)} >Finished</button>
       </>
   )
 }

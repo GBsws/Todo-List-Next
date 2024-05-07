@@ -3,8 +3,9 @@ import { Header } from "@/components/Header/Header";
 import styles from "./page.module.css";
 import { useState } from "react";
 import {ToDoList} from "@/components/ToDoList/ToDoList";
+import { NewTodo } from "@/components/NewTodo/NewTodo";
 
-type TaskStructure ={
+export type TaskStructure ={
   text:string;
   description:string;
   comment:string;
@@ -14,22 +15,26 @@ type TaskStructure ={
 export default function Home() {
   const [tasks, setTasks] = useState<TaskStructure[]>([]);
 
-  function handleAddTask(){
-    setTasks(prevGoals=>{
+  function handleAddTask(text:string,description:string, comment:string){
+    setTasks(prevTasks=>{
       const newTask:TaskStructure = {
         id:Math.random(),
-        text:'malý úkol v Next',
-        description:'samostatná práce s Next',
-        comment:'okomentuj výsledek snažení'
+        text:text,
+        description:description,
+        comment: comment,
       };
-      return [...prevGoals, newTask]
+      return [...prevTasks, newTask]
     })
+  }
+
+  const handleDoneTask = (id:number)=>{
+    setTasks(prevTasks=> prevTasks.filter((task)=>task.id !== id))
   }
   return (
       <main className={styles.main}>
       <Header />
-      <button onClick={handleAddTask}>Add task</button>
-      <ToDoList tasks={tasks} />
+      <NewTodo onAddTask={handleAddTask} />
+      <ToDoList tasks={tasks} onFinishedTask={handleDoneTask} />
       </main>
   );
 }
