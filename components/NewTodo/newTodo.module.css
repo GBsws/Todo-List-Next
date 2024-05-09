@@ -1,0 +1,25 @@
+#form {
+  color:grey;
+  display: flex;
+  flex-direction: column;
+}
+.p{
+  display: flex;
+}
+.task_name,
+.task_description {
+  text-align:center;
+}
+.comment {
+  align-self:center;
+}
+
+.button_type {
+   padding: 10px 20px; 
+   border-radius: 6px;
+}
+
+.button_type:hover {
+  transform: scale(1.1);
+  letter-spacing:2px;
+}

@@ -1,4 +1,5 @@
 import { type FormEvent, useRef } from "react";
+import classes from './newTodo.module.css'
 
 type NewTodoProps = {
   onAddTask:(text:string,description:string,comment:string)=> void;
@@ -21,21 +22,21 @@ export const NewTodo =({onAddTask}:NewTodoProps)=>{
   }
 
   return (
-  <form onSubmit={handleSubmit}>
-    <p>
-      <label htmlFor="text">Name of Task </label>
+  <form id={classes.form} onSubmit={handleSubmit}>
+    <p className={classes.task_name}>
+      <label htmlFor="text">Name the Task </label>
       <input id="text" type="text" ref={text}/>
     </p>
-    <p>
-      <label htmlFor="description">Short description </label>
+    <p className={classes.task_description}>
+      <label htmlFor="description">Describe the Task </label>
        <input id="description" type="text" ref={description} />
     </p>
-    <p>
-     <label htmlFor="comment">Insert comment</label>
+    <p className={classes.p}>
+     <label className={classes.comment} htmlFor="comment">Insert comment  </label>
       <textarea id="comment" rows={6} cols={35} ref={comment} />
     </p>
-    <p>
-      <button type="submit">Add Task</button>
+    <p className={classes.button}>
+      <button className ={classes.button_type} type="submit">Add Task</button>
     </p>
   </form>
 )}
